@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broccoli Casserole Step 3</title>
+    <style>
+
+        html {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FFAE00;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .menu-button {
+            position: absolute;
+            left: 20px;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .menu-button img {
+            width: 45px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-button:hover img {
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background-color: #FFAE00;
+            width: 200px;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown a {
+            color: #776363;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {
+            background-color: #e29b00;
+        }
+
+        .menu-container:hover .dropdown {
+            display: block;
+        }
+
+        h1 {
+            color: #776363;
+            font-size: clamp(18px, 5vw, 48px);
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        img.main-img {
+            width: 40%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        p{
+            font-size: clamp(1px, 5vw, 28px);
+            margin: 0;
+            text-align: center;
+            flex-grow: 1; 
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #FFAE00;
+            color: #776363;
+            border: none;
+            border-radius: 5px;
+            font-size: clamp(12px, 2vw, 42px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .button:hover {
+            background-color: #e29b00;
+            transform: scale(1.05);
+        }
+        a {
+    text-decoration: none;
+    color: inherit;
+}
+        @media (min-width: 1440px) {
+            .menu-button img {
+                width: 50px;
+            }
+            h1 {
+                font-size: clamp(20px, 4vw, 50px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            img.main-img {
+                width: 80%;
+            }
+        }
+  
+        .image-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            margin: 50px auto;
+        }
+
+        .image-container img {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .swing-out {
+            animation: swing-out 0.4s forwards;
+        }
+
+        @keyframes swing-out {
+            0% {
+                transform: rotate(0deg) translateX(0);
+            }
+            100% {
+                transform: rotate(45deg) translateX(150%);
+            }
+        }
+
+        @keyframes swing-in {
+            0% {
+                transform: rotate(-45deg) translateX(-150%);
+                opacity: 0;
+            }
+            100% {
+                transform: rotate(0deg) translateX(0);
+                opacity: 1;
+            }
+        }
+
+      
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div class="menu-container">
+            <button class="menu-button">
+                <img src="Bilder/1.png" alt="Menu Button">
+            </button>
+            <div class="dropdown">
+                <a href="BroccoliCasserole.html">Start</a>
+                <a href="zutaten.html">Ingredients</a>
+                <a href="step1.html">Step 1</a>
+                <a href="step2.html">Step 2</a>
+                <a href="step3.html">Step 3</a>
+                <a href="step4.html">Step 4</a>
+                <a href="step5.html">Step 5</a>
+                <a href="#">About</a>
+
+                <a href="Broccoli Casserole Recipe.pdf" download>Download Recipe</a>
+            </div>
+        </div>
+        <h1>Broccoli Casserole Step 3</h1>
+    </div>
+    
+    <div class="image-container">
+        <img id="image" src="Bilder/31.png" alt="Broccoli Casserole Bild">
+       
+    </div>
+    <button class="button" onclick="swingImage()">-></button>
+    <script>
+    
+        const images = [
+            "Bilder/31.png",
+            "Bilder/32.png"
+        ];
+        let currentIndex = 0;
+
+function swingImage() {
+    const imageElement = document.getElementById("image");
+
+    imageElement.classList.add("swing-out");
+
+    setTimeout(() => {
+        currentIndex = (currentIndex + 1) % images.length; 
+        imageElement.src = images[currentIndex];
+
+        imageElement.style.animation = "swing-in 0.4s forwards";
+        setTimeout(() => {
+            imageElement.style.animation = "";
+            imageElement.classList.remove("swing-out");
+        }, 500);
+    }, 500);
+}
+    </script>
+    <h1>3. Cook the Pasta</h1>
+    <p> 
+        - Cook the pasta un l al dente according to package instruc ons. <br>
+        - While the pasta cooks, grease your casserole dish and preheat it in the <br>
+        oven at 100°C. <br>
+        - Drain the pasta, reserving the cooking water in case you need to thin the <br>
+        sauce later.</p>
+
+    <a href="step4.html"><button class="button"><i class="fas fa-home"></i> Step 4 -></button></a>
+
+</body>
+</html>

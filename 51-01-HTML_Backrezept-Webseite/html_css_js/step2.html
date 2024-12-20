@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broccoli Casserole Step 2</title>
+    <style>
+
+        html {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FFAE00;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .menu-button {
+            position: absolute;
+            left: 20px;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .menu-button img {
+            width: 45px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-button:hover img {
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background-color: #FFAE00;
+            width: 200px;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown a {
+            color: #776363;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {
+            background-color: #e29b00;
+        }
+
+        .menu-container:hover .dropdown {
+            display: block;
+        }
+
+        h1 {
+            color: #776363;
+            font-size: clamp(18px, 5vw, 48px);
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        img.main-img {
+            width: 40%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        p{
+            font-size: clamp(1px, 5vw, 28px);
+            margin: 0;
+            text-align: center;
+            flex-grow: 1; 
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #FFAE00;
+            color: #776363;
+            border: none;
+            border-radius: 5px;
+            font-size: clamp(12px, 2vw, 42px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .button:hover {
+            background-color: #e29b00;
+            transform: scale(1.05);
+        }
+        a {
+    text-decoration: none;
+    color: inherit;
+}
+        @media (min-width: 1440px) {
+            .menu-button img {
+                width: 50px;
+            }
+            h1 {
+                font-size: clamp(20px, 4vw, 50px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            img.main-img {
+                width: 80%;
+            }
+        }
+  
+        .image-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            margin: 50px auto;
+        }
+
+        .image-container img {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .swing-out {
+            animation: swing-out 0.4s forwards;
+        }
+
+        @keyframes swing-out {
+            0% {
+                transform: rotate(0deg) translateX(0);
+            }
+            100% {
+                transform: rotate(45deg) translateX(150%);
+            }
+        }
+
+        @keyframes swing-in {
+            0% {
+                transform: rotate(-45deg) translateX(-150%);
+                opacity: 0;
+            }
+            100% {
+                transform: rotate(0deg) translateX(0);
+                opacity: 1;
+            }
+        }
+
+      
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div class="menu-container">
+            <button class="menu-button">
+                <img src="Bilder/1.png" alt="Menu Button">
+            </button>
+            <div class="dropdown">
+                <a href="BroccoliCasserole.html">Start</a>
+                <a href="zutaten.html">Ingredients</a>
+                <a href="step1.html">Step 1</a>
+                <a href="step2.html">Step 2</a>
+                <a href="step3.html">Step 3</a>
+                <a href="step4.html">Step 4</a>
+                <a href="step5.html">Step 5</a>
+                <a href="#">About</a>
+
+                <a href="Broccoli Casserole Recipe.pdf" download>Download Recipe</a>
+            </div>
+        </div>
+        <h1>Broccoli Casserole Step 2</h1>
+    </div>
+    
+    <div class="image-container">
+        <img id="image" src="Bilder/26.jpg" alt="Broccoli Casserole Bild">
+       
+    </div>
+    <button class="button" onclick="swingImage()">-></button>
+    <script>
+    
+        const images = [  
+            "Bilder/26.jpg",
+            "Bilder/27.jpg",
+            "Bilder/24.png",
+            "Bilder/28.png",
+            "Bilder/29.jpg",
+            "Bilder/30.png"
+          
+        ];
+        let currentIndex = 0;
+
+function swingImage() {
+    const imageElement = document.getElementById("image");
+
+    imageElement.classList.add("swing-out");
+
+    setTimeout(() => {
+        currentIndex = (currentIndex + 1) % images.length; 
+        imageElement.src = images[currentIndex];
+
+        imageElement.style.animation = "swing-in 0.4s forwards";
+        setTimeout(() => {
+            imageElement.style.animation = "";
+            imageElement.classList.remove("swing-out");
+        }, 500);
+    }, 500);
+}
+    </script>
+    <h1>2. Make the Sauce </h1>
+    <p>
+        - Melt a bit of bu er or margarine in a pan over low heat. Add 2 <br>
+        tablespoons of flour and mix un l well combined and smooth. <br>
+        - Gradually add the milk, s rring constantly to prevent lumps. Repeat un l <br>
+        all the milk is used up, then con nue s rring for about 10 minutes un l <br>
+        the sauce is smooth. <br>
+        - Add the diced broccoli stems to the sauce and blend with an immersion <br>
+        blender un l creamy. <br>
+        - Stir in 2 tablespoons of crème fraîche and some of the reserved broccoli <br>
+        water to adjust the sauce consistency.</p>
+
+    <a href="step3.html"><button class="button"><i class="fas fa-home"></i> Step 3 -></button></a>
+
+</body>
+</html>
